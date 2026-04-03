@@ -4,8 +4,13 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from dotenv import load_dotenv
 
-# .env 파일 로드
-load_dotenv(dotenv_path="../../../.env")
+# ✅ Final-transformer-v2 디렉터리를 기준으로 .env 파일 로드
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # 현재 파일 위치 (backend/app)
+ROOT_DIR = os.path.abspath(os.path.join(BASE_DIR, "../../"))  # Final-transformer-v2 디렉토리
+ENV_PATH = os.path.join(ROOT_DIR, ".env")  # ✅ 최상위 디렉토리의 .env 경로
+
+# 환경 변수 로드
+load_dotenv(dotenv_path=ENV_PATH)
 
 # 환경 변수에서 MySQL 접속 정보 가져오기
 MYSQL_USER = os.getenv("MYSQL_USER")
